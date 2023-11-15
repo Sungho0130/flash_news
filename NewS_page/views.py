@@ -27,7 +27,7 @@ def main_page(request):
     for instance in craw:
         instance.save()
 
-    return render(request, "news_list.html", {'craw': craw})
+    return render(request, "main.html", {'craw': craw})
 
 
 
