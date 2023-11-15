@@ -18,7 +18,7 @@ def newscrawring():
 
 
     home_news = {'title': [], 'content': [], 'img': [], 'src':[]}
-    for de in home[:3]:
+    for de in home[:16]:
         url_de = de
         page = urlopen(url_de)
         soup = BeautifulSoup(page, "lxml")

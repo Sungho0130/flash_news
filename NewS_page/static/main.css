@@ -1,11 +1,163 @@
-.main-header-logo {
-    text-align: center; /* 부모 요소 안에서 텍스트 정렬을 가운데로 설정합니다. */
-}
+     .scrollable-div {
+      width: 300px; /* 원하는 너비 설정 */
+      height: 200px; /* 원하는 높이 설정 */
+      overflow: auto; /* 스크롤을 보이도록 설정 */
+      border: 1px solid #ccc; /* 테두리 추가 (선택 사항) */
+      margin: 20px; /* 여백 추가 (선택 사항) */
+    }
+	.progress-container {
+		position: fixed; /* 상단에 고정 */
+		top: 0; /* 위치는 위에 딱 붙게 */
+		width: 100%; /* 넓이는 100% */
+		height: 4px; /* 높이는 4px */
+		background: transparent; /* 배경색 투명하게 */
+		z-index: 1000; /* 다른 요소들보다 위에 보이게 */
+	}
+	.progress-bar {
+		height: 6px;
+		width: 0%;
+		background: #6acbe1; /* 표시될 배경색 */
+	}
 
-.main-header-logo img {
-    display: block; /* 이미지를 블록 요소로 설정하여 가운데 정렬을 용이하게 합니다. */
-    margin: 0 auto; /* 좌우 여백을 자동으로 설정하여 가운데 정렬합니다. */
-}
-.main-sidebar {
-    width: 50%; /* 또는 다른 원하는 크기로 설정 */
-}
+    .main-header-logo {
+        text-align: center; /* 부모 요소 안에서 텍스트 정렬을 가운데로 설정합니다. */
+    }
+
+    .main-header-logo img {
+        display: block; /* 이미지를 블록 요소로 설정하여 가운데 정렬을 용이하게 합니다. */
+        margin: 0 auto; /* 좌우 여백을 자동으로 설정하여 가운데 정렬합니다. */
+    }
+
+    @media(min-width: 600px){ /* 사이트 창 크기에 따라 보여지는 카드 리스트 갯수 변형 */
+
+	.card-list {
+        display: flex;
+        flex-wrap: wrap; // 넘치는 카드 아래로 넘기기
+        margin: 0 -1rem; // 카드 바깥 쪽 공간 없애기
+
+    }
+    .card-item {
+        width: 50%; // 카드 2단 배치
+        padding: 0 1rem; // 카드 사이 간격
+    }
+	}
+	@media(min-width: 1200px){
+		.card-item {
+			width: 33.33333%; // 카드 3단 배치
+		}
+	}
+	.card {
+	height: 600px;
+	width: 475px;
+	border-radius: 15px;
+	display: inline-block;
+	margin-top: 30px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-bottom: 30px;
+	position: relative;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	overflow: hidden;
+	}
+	/*카드 마우스 호버링*/
+	.card-header {
+		-webkit-transition: 0.5s; /*사파리 & 크롬*/
+	-moz-transition: 0.5s;/*파이어폭스*/
+	-ms-transition: 0.5s;	/*인터넷 익스플로러*/
+	-o-transition: 0.5s;/*오페라*/
+	transition: 0.7s;
+		width: 100%;
+		height: 280px;
+		border-radius: 15px 15px 0 0;
+		background-image: url("images/korea.jpeg");
+		background-size: 100% 280px;
+		background-repeat: no-repeat;
+	}
+	/*카드 호버링 후 뒷 배경과 스크롤 고정 위치*/
+	.card:hover .card-header{
+		opacity: 0.2;
+		height: 100px;
+	}
+
+	.card-header-is_closed{
+	background-color: #EF5A31 ;
+	color: #FFF ;
+	font-weight: bold ;
+	text-align: center ;
+	float: right;
+	margin: 100px 100px 0 0;
+	border-radius: 50%;
+	font-weight: bold;
+	padding: 10px 10px;
+	line-height: 20px;
+	}
+
+	h1 {
+	font-size: 22px;
+	font-weight: bold;
+	}
+
+	.card-body {
+	}
+
+	.card-body-header{
+		line-height: 25px;
+		margin: 10px 20px 0px 20px;
+	}
+	/*카드 마우스 호버링 요약글 부분*/
+	.card-text p {
+		margin-top: 260px; /* 적절한 값을 사용하세요 */
+		margin-left: 30px;
+		margin-right: 30px;
+    }
+
+	.card-body-description{
+		opacity: 0;
+		color: #757B82;
+		line-height: 20px;
+		-webkit-transition: .2s ease-in-out; /*사파리&크롬*/
+		-moz-transition: .2s ease-in-out; /*파이어폭스*/
+		-ms-transition: .2s ease-in-out; /*익스플로러*/
+		-o-transition: .2s ease-in-out; /*오페라*/
+		transition : .2s ease-in-out;
+		overflow: hidden;
+		height: 20px;
+		margin: 50px 20px;
+	}
+
+	.card:hover .card-body-description {
+		opacity: 1;
+		-webkit-transition: .5s ease-in-out;
+		-moz-transition: .5s ease-in-out;
+		-ms-transition: .5s ease-in-out;
+		-o-transition: .5s ease-in-out;
+		transition : .5s ease-in-out;
+		overflow: scroll;
+	}
+
+	.card-body-hashtag {
+		color: #2478FF;
+		font-style: italic;
+	}
+
+	.card-body-footer {
+		position: absolute;
+		margin-top: 15px;
+		margin-left: 15px;
+		margin-bottom: 6px;
+		bottom: 0;
+		width: 314px;
+		font-size: 14px;
+		color: #9FA5A8;
+		padding: 0 15px;
+	}
+
+	.reg_date {
+		float: right;
+	}
+	.box{
+   -ms-overflow-style: none;
+    }
+	.box::-webkit-scrollbar{
+		display:none;
+    }
