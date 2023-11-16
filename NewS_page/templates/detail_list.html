@@ -1,5 +1,5 @@
 <div class="box" style="height:1500px; width:100%; overflow: scroll;">
-{% for i in craw %}
+{% for i in detail_page %}
 	<div class="card" id="mouse-over-label">
 	<!-- 카드 헤더 -->
 		<div class="card-header">
@@ -31,22 +31,23 @@
 		</div>
 	</div>
 {% endfor %}
-	<!-- 페이지네이션 -->
+    <!-- 페이지네이션 링크 -->
 	<div class="pagination">
-		<span class="step-links">
-			{% if craw.has_previous %}
-				<a href="?page=1">&laquo; first</a>
-				<a href="?page={{ craw.previous_page_number }}">previous</a>
-			{% endif %}
-			<span class="current">
-				Page {{ craw.number }} of {{ craw.paginator.num_pages }}.
-			</span>
-			{% if craw.has_next %}
-				<a href="?page={{ craw.next_page_number }}">next</a>
-				<a href="?page={{ craw.paginator.num_pages }}">last &raquo;</a>
-			{% endif %}
-		</span>
-	</div>
+        <span class="step-links">
+            {% if detail_page.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ detail_page.previous_page_number }}">previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ detail_page.number }} of {{ detail_page.paginator.num_pages }}.
+            </span>
+            {% if detail_page.has_next %}
+                <a href="?page={{ detail_page.next_page_number }}">next</a>
+                <a href="?page={{ detail_page.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
 </div>
 <style>
 	/*카드 마우스 호버링 요약글 부분*/
