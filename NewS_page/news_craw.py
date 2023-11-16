@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import re
+
 # from .dep_model import Summarize
 
 
@@ -15,10 +17,8 @@ def newscrawring():
     for news in news_list:
         home.append(news.select_one('a').get('href', ''))
 
-
-
     home_news = {'title': [], 'content': [], 'img': [], 'src':[]}
-    for de in home[:3]:
+    for de in home[:15]:
         url_de = de
         page = urlopen(url_de)
         soup = BeautifulSoup(page, "lxml")
@@ -85,4 +85,60 @@ def newscrawring():
 
 
     return home_news
+
+def text_cleaning(text: str) -> str:
+    '''
+    텍스트 정제 함수.
+    한글, 영어, 숫자 이외의 문자는 전부 제거
+    '''
+
+    # 한글, 영어, 숫자 이외의 문자들 추출
+    han_eng_num = re.compile("[^ㄱ-ㅣ가-힣a-zA-Z0-9]+")
+
+    # 한글, 영어, 숫자 이외의 문자들 제거
+    text = han_eng_num.sub(" ", text)
+
+
+def news_category_crawling(category, current_page):
+    category_home = {'title': [], 'content': [], 'img': [], 'src': []}
+
+    # 카테고리 별 페이지네이션을 받아 크롤링
+    url = f"https://news.daum.net/breakingnews/{category}?page={current_page}"
+    print("크롤링할 url :", url)
+    page = urlopen(url)
+    soup = BeautifulSoup(page, "lxml")
+
+    # 본문 페이지 뽑기
+    page = soup.select("ul.list_news2.list_allnews strong.tit_thumb a")
+    for i in page:
+        category_home["src"].append(i.get("href"))
+
+    # 본문 기사내용 추출
+    for i in category_home["src"]:
+        detail_url = i
+        detail_page = urlopen(detail_url)
+        soup = BeautifulSoup(detail_page, "lxml")
+
+        content = soup.select_one("article.box_view section")
+        sep = [i.get_text() for i in content.find_all("p")]
+        sep = ''.join(sep)
+        text_cleaning(sep)
+        category_home["content"].append(sep)
+
+        # 기사 제목 추출
+        title = soup.select_one("h3.tit_view")
+        category_home["title"].append(title.get_text())
+
+        # 기사 이미지 추출
+        img = soup.select_one("p.link_figure img")
+        video = soup.select_one("div.vod_player iframe")
+        if img:
+            category_home["img"].append(img.get("src"))
+        elif video:
+            category_home["img"].append(video.get("src"))
+        else:
+            category_home["img"].append("#")
+    return category_home
+
+
 

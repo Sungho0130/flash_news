@@ -69,7 +69,13 @@
 							<header>
 								<h2>실시간 오늘의 뉴스</h2>
 							</header>
+							{% if craw %}
 								{% include "news_list.html" %}
+							{% elif detail_page %}
+								{% include "detail_list.html" %}
+							{% else %}
+								<p>여기에 표시할 콘텐츠가 없습니다.</p>
+							{% endif %}
 						</section>
 					</div>
 				</div>
