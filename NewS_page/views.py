@@ -59,14 +59,9 @@ def your_model_endpoint(request):
         print("Error in your_model_endpoint:", str(e))
         return JsonResponse({'result': []})
 
-<<<<<<< HEAD
 def ns_page(request):
     return render(request, "NS_page.html")
 
-
-
-
-=======
 
 def detail_page(request, category):
     # 기존에 있던 크롤링 기사를 모두 제거
@@ -103,6 +98,6 @@ def detail_page(request, category):
         paginated_craw = paginator.page(paginator.num_pages)
 
     return render(request, "main.html", {'detail_page': paginated_craw})
->>>>>>> e1c072eb612e3fa570dff6991c07131787332735
+
 
 
