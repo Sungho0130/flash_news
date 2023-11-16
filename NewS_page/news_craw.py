@@ -1,9 +1,23 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+from selenium.webdriver import Chrome, ChromeService
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 
 
 
-
+def iframe_src(url : str):
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    driver = webdriver.Chrome(service = ChromeService("chromedriver.exe",options=chrome_options))
+    driver.get(url)
+    driver.implicitly_wait(1)
+    items = driver.find_element(By.CSS_SELECTOR, "#coverImage")
+    st = items.get_attribute('style')
+    driver.quit()
+    st= st.replace('background-image: url("','').replace('");','')
+    return st
 
 
 def newscrawring():
@@ -49,7 +63,9 @@ def newscrawring():
                 a = a[1]
         # 이미지 주소가 없다면
         else:
-            a = '#'
+            urlif = soup.iframe.get('src')
+            url1 = 'https:' + urlif
+            a = iframe_src(url1)
         # 이미지 주소 추가
         home_news['img'].append(a)
 

@@ -49,13 +49,8 @@ def job():
             instance.summarize = summarize
             instance.save()
 
-    # # 결과 리스트에 추가
-    # for instance in Crawring.objects.all():
-    #     summarizations.append(instance.summarize)
-
-
 
 def main():
     sched = BackgroundScheduler()
-    sched.add_job(job,'interval', seconds=10, id='test')
+    sched.add_job(job,'interval', seconds=60, id='test')
     sched.start()
