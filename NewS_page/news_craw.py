@@ -18,11 +18,8 @@ def newscrawring():
         home.append(news.select_one('a').get('href', ''))
 
     home_news = {'title': [], 'content': [], 'img': [], 'src':[]}
-<<<<<<< HEAD
-    for de in home[:2]:
-=======
-    for de in home[:15]:
->>>>>>> e1c072eb612e3fa570dff6991c07131787332735
+
+    for de in home[:4]:
         url_de = de
         page = urlopen(url_de)
         soup = BeautifulSoup(page, "lxml")
