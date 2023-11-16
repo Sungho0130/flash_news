@@ -4,9 +4,7 @@
 	<!-- 카드 헤더 -->
 		<div class="card-header">
 			<img src="{{ i.img }}" style="width: 500px; height: 300px;">
-
 		</div>
-
 		<!--카드 바디 -->
 		<div class="card-body">
 		<!--카드 바디 헤더 -->
@@ -22,13 +20,13 @@
 			<div class="card-text" id="result-section-{{ forloop.counter }}" style="display: none;">
 				<p>{{ i.summarize }}</p>
 			</div>
+			<!-- 마우스 호버링 버튼 -->
 			<div class="card-button">
 				<button class="button" onclick="window.open('{{ i.src }}')">본문 더 보기</button>
 			</div>
-
 			<!--카드 바디 푸터 -->
 			<div class="card-body-footer">
-			<hr style="margin-bottom: 2px; opacity: 0.5; border-color: #EF5A31">
+				<hr style="margin-bottom: 2px; opacity: 0.5; border-color: #EF5A31">
 			</div>
 		</div>
 	</div>
