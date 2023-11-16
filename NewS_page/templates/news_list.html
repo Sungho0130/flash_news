@@ -9,18 +9,12 @@
 		<div class="card-body">
 		<!--카드 바디 헤더 -->
 			<div class="card-body-header">
-				<h3>{{ i.title }}</h3>
-<!--					<br><br><br><br><br><br>-->
-				<div id="loading-screen-{{ forloop.counter }}">
-					<p>Loading... <img src="https://t1.daumcdn.net/cfile/tistory/184F8A4E4E55932B06" width="10" height="10"></p>
-				</div>
+				<h3><a href="{{ i.src }}">{{ i.title }}</a></h3>
 			</div>
 			<!-- 모델 결과를 표시할 부분 -->
-			<a href="{{ i.src }}">
-				<div class="card-text" id="result-section-{{ forloop.counter }}" style="display: none;">
-					<p>{{ i.summarize }}</p>
-				</div>
-			</a>
+
+			<p>{{ i.summarize }}</p>
+
 			<!--카드 바디 본문 -->
 			<!--카드 바디 푸터 -->
 			<div class="card-body-footer">

@@ -1,13 +1,10 @@
-# import transformers
-# from transformers import BertTokenizerFast
-# from transformers import EncoderDecoderModel
-from transformers import BartForConditionalGeneration, BertTokenizerFast
+from transformers import BertTokenizerFast
+from transformers import EncoderDecoderModel
 
 
 class Summarize():
     def __init__(self, model_name:str, tokenizer_name:str):
-        self.model = BartForConditionalGeneration.from_pretrained(model_name)
-        # self.tokenizer = BertTokenizerFast.from_pretrained('kykim/bertshared-kor-base')
+        self.model = EncoderDecoderModel.from_pretrained(model_name)
         self.tokenizer = BertTokenizerFast.from_pretrained(tokenizer_name)
 
     def __call__(self, text):

@@ -1,10 +1,10 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-# from .dep_model import Summarize
 
 
 
-# summarize = Summarize('C:/Users/Admin/OneDrive/바탕 화면/python_Ai/파이널 프로젝트/web_test/main_page/fine')
+
+
 
 def newscrawring():
     url = 'https://news.daum.net/'
@@ -18,7 +18,7 @@ def newscrawring():
 
 
     home_news = {'title': [], 'content': [], 'img': [], 'src':[]}
-    for de in home[:16]:
+    for de in home[:]:
         url_de = de
         page = urlopen(url_de)
         soup = BeautifulSoup(page, "lxml")
@@ -32,9 +32,6 @@ def newscrawring():
         # 본문 내용 크롤링
         sep = soup.div.article.section.find_all()
 
-        # # 이미지 크롤링
-        # for news in news_list:
-        #     home_news['img'].append(news.select_one('img').get('src', ''))
 
         a = []
         #이미지 1개 크롤링
@@ -74,13 +71,8 @@ def newscrawring():
         # 앞부분 기사설명 스킵해준뒤 두칸이상 띄어쓰기 제거
         contens = contens.replace("  ", "")
 
-        # if contens and len(contens) > 500:
-        #     b = contens[:500]
-        # else:
-        #     b = contens[:len(contens)]
 
         # 기사 본문 저장
-        # home_news['content'].append(summarize(b))
         home_news['content'].append(contens)
 
 
