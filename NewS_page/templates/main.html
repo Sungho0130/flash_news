@@ -43,6 +43,7 @@
 				<script src="/data/code/js/CSSTester.js"></script>
 	</head>
 
+<<<<<<< HEAD
 	<body class="page-template-default" style="background-color:white">
 		<div id="fb-root"></div>
 		<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v5.0&appId=601760870383429&autoLogAppEvents=1"></script>
@@ -71,6 +72,37 @@
 								{% include "news_list.html" %}
 							</section>
 						</div>
+=======
+<body class="page-template-default page page-id-855">
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v5.0&appId=601760870383429&autoLogAppEvents=1"></script>
+
+	<div class="container">
+		<header class="global-header">
+			<div class="main-header-logo">
+				<a class="main-header-logo-link" href="/">
+					<img src="https://pxl-imperialacuk.terminalfour.net/fit-in/1079x305/prod01/channel_2/media/migration/staff/shutterstock_366490265--tojpeg_1518628471851_x4.jpg" alt="main logo">
+				</a>
+			</div>
+		{% include "navbar.html" %}
+		</header>
+		<div class="main">
+			<article class="static-article">
+				<div class="width-setter">
+					<div class="static-article-content">
+						<section class="content-section">
+							<header>
+								<h2>실시간 오늘의 뉴스</h2>
+							</header>
+							{% if craw %}
+								{% include "news_list.html" %}
+							{% elif detail_page %}
+								{% include "detail_list.html" %}
+							{% else %}
+								<p>여기에 표시할 콘텐츠가 없습니다.</p>
+							{% endif %}
+						</section>
+>>>>>>> e1c072eb612e3fa570dff6991c07131787332735
 					</div>
 				</article>
 			</div>
