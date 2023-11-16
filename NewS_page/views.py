@@ -58,7 +58,8 @@ def your_model_endpoint(request):
         print("Error in your_model_endpoint:", str(e))
         return JsonResponse({'result': []})
 
-
+def ns_page(request):
+    return render(request, "NS_page.html")
 
 
 

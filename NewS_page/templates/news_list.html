@@ -1,10 +1,12 @@
 <div class="box" style="height:1500px; width:100%; overflow: scroll;">
 {% for i in craw %}
-	<div class="card">
+	<div class="card" id="mouse-over-label">
 	<!-- 카드 헤더 -->
 		<div class="card-header">
 			<img src="{{ i.img }}" style="width: 500px; height: 300px;">
+
 		</div>
+
 		<!--카드 바디 -->
 		<div class="card-body">
 		<!--카드 바디 헤더 -->
@@ -15,13 +17,15 @@
 					<p>Loading... <img src="https://t1.daumcdn.net/cfile/tistory/184F8A4E4E55932B06" width="10" height="10"></p>
 				</div>
 			</div>
-			<!-- 모델 결과를 표시할 부분 -->
-			<a href="{{ i.src }}">
-				<div class="card-text" id="result-section-{{ forloop.counter }}" style="display: none;">
-					<p>{{ i.summarize }}</p>
-				</div>
-			</a>
 			<!--카드 바디 본문 -->
+			<!-- 모델 결과를 표시할 부분 -->
+			<div class="card-text" id="result-section-{{ forloop.counter }}" style="display: none;">
+				<p>{{ i.summarize }}</p>
+			</div>
+			<div class="card-button">
+				<button class="button" onclick="window.open('{{ i.src }}')">본문 더 보기</button>
+			</div>
+
 			<!--카드 바디 푸터 -->
 			<div class="card-body-footer">
 			<hr style="margin-bottom: 2px; opacity: 0.5; border-color: #EF5A31">
@@ -46,3 +50,32 @@
 		</span>
 	</div>
 </div>
+<style>
+	/*카드 마우스 호버링 요약글 부분*/
+	.card-text p {
+		margin-top: 110px; /* 적절한 값을 사용하세요 */
+		margin-left: 30px;
+		margin-right: 30px;
+    }
+    /*카드 마우스 호버링 숨겨져잇는 버튼 위치*/
+	.card-button {
+		position: absolute;
+		bottom: 10px; /* 바닥(fixed bottom)에 고정 */
+		right: 10px; /* 오른쪽(fixed right)에 고정 */
+		opacity: 0; /* 초기에는 숨김 */
+		transition: opacity 0.5s ease-in-out; /* 부드러운 페이드 효과를 위한 트랜지션 */
+	}
+	/*카드 마우스 호버링 숨겨진 버튼 나타내기*/
+	.card:hover .card-button {
+		opacity: 1; /* 마우스를 올리면 투명도를 1로 변경하여 보이게 함 */
+	}
+	/*카드 마우스 호버링 버튼 디자인*/
+	.button {
+		padding: 10px;
+		background-color: #007BFF;
+		color: #fff;
+		border: none;
+		cursor: pointer;
+	}
+
+</style>
