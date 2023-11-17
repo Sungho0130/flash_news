@@ -1,3 +1,5 @@
+{% load static %}
+<link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
 <nav class="main-menu-con">
     <ul id="menu-main-menu" class="main-menu">
         <li id="menu-item-35" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-35"><a href="/">홈</a></li>
@@ -10,3 +12,24 @@
         <li id="menu-item-197" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-197"><a href="{% url 'ns_page' %}">요약</a></li>
     </ul>
 </nav>
+<script>
+    window.addEventListener('scroll', function() {
+          var navbar = document.querySelector('.main-menu-con');
+          var menuItems = document.querySelectorAll('.main-menu-con li');
+          var scrollPosition = window.scrollY;
+
+          var stickyPosition = 100;
+
+    if (scrollPosition >= stickyPosition) {
+        navbar.classList.add('fixed-navbar');
+        menuItems.forEach(function(item) {
+            item.style.marginRight = '120px';
+        });
+    } else {
+        navbar.classList.remove('fixed-navbar');
+        menuItems.forEach(function(item) {
+            item.style.marginRight = '0'; // 마진 제거
+        });
+      }
+    });
+</script>

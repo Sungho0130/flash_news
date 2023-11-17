@@ -40,3 +40,18 @@
 
 		// fetchData 함수를 바로 호출하여 페이지 로딩시 실행
 	fetchData();
+	// fetchData 함수를 바로 호출하여 페이지 로딩시 실행
+	fetchData();
+
+	#navBar {
+	position: fixed;
+	top: -header.height;
+	width: 100%;
+	transition: top 0.5s;
+	transition: top 0.5s;
+	}
+
+    var navbar = document.querySelector('.main-menu-con');
+
+    // 네비게이션 바의 초기 위치를 가져옵니다.
+    var navbarOffset = navbar.offsetTop;

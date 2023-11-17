@@ -24,7 +24,7 @@ def main_page(request):
     craw = Crawring.objects.all()
 
     # Paginator를 사용하여 뉴스 기사를 페이지로 나눔
-    paginator = Paginator(craw, 15)  # 한 페이지에 15개의 뉴스 기사를 표시
+    paginator = Paginator(craw, 2)  # 한 페이지에 15개의 뉴스 기사를 표시
 
     page = request.GET.get('page')  # GET 파라미터에서 현재 페이지 번호 가져오기
     try:
