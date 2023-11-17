@@ -20,38 +20,38 @@ def job():
 
     news = newscrawring()
 
+    if len(news['title']) != 0:
 
-    for i in range(len(news['title'])):
-        # 중복 확인
-        if not Crawring.objects.filter(title=news["title"][i]).exists():
-            title = news['title'][i]
-            content = news['content'][i]
-            img = news['img'][i]
-            src = news['src'][i]
+        for i in range(len(news['title'])):
+            # 중복 확인
+            if not Crawring.objects.filter(title=news["title"][i]).exists():
+                title = news['title'][i]
+                content = news['content'][i]
+                img = news['img'][i]
+                src = news['src'][i]
 
-            # Crawring 모델 인스턴스 생성 및 저장
-            Crawring.objects.create(title=title, content=content, img=img, src=src)
+                # Crawring 모델 인스턴스 생성 및 저장
+                Crawring.objects.create(title=title, content=content, img=img, src=src)
 
 
 
     # 데이터 베이스 50개 초과시 오래된 것 부터 삭제
-    data_num()
+        data_num()
 
-    for instance in Crawring.objects.filter(summarize=''):
-        # 이미 채워진 content를 사용
-        content = instance.content
+        for instance in Crawring.objects.filter(summarize=''):
+            # 이미 채워진 content를 사용
+            content = instance.content
 
-        # summary 모델을 돌리기
-        summarize = summary(content)
+            # summary 모델을 돌리기
+            summarize = summary(content)
 
-        # summarize가 비어있는 경우에만 저장
-        if not instance.summarize:
-            instance.summarize = summarize
-            instance.save()
-
+            # summarize가 비어있는 경우에만 저장
+            if not instance.summarize:
+                instance.summarize = summarize
+                instance.save()
 
 
 def main():
     sched = BackgroundScheduler()
-    sched.add_job(job,'interval', seconds=10, id='test')
+    sched.add_job(job,'interval', seconds=30, id='test')
     sched.start()

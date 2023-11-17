@@ -40,7 +40,7 @@
 //
 //		// fetchData 함수를 바로 호출하여 페이지 로딩시 실행
 //	fetchData();
-	// fetchData 함수를 바로 호출하여 페이지 로딩시 실행
+//	 fetchData 함수를 바로 호출하여 페이지 로딩시 실행
 //	fetchData();
 
 	#navBar {
