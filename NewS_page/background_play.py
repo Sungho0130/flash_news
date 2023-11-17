@@ -4,7 +4,7 @@ from .models import Crawring
 from .model_call import summary
 
 def data_num():
-    max_records = 50
+    max_records = 50 # 데이터 베이스 크기
     current_records = Crawring.objects.count()
 
     if current_records > max_records:
@@ -53,5 +53,5 @@ def job():
 
 def main():
     sched = BackgroundScheduler()
-    sched.add_job(job,'interval', seconds=10, id='test')
+    sched.add_job(job,'interval', seconds=10000000, id='test') # 크롤링하는 해오는 시간
     sched.start()
