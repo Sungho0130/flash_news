@@ -42,7 +42,7 @@
                             </header>
                             {% if craw %}
                             {% include "news_list.html" %}
-                            {% elif detail_page %}
+                            {% elif craw_ct %}
                             {% include "detail_list.html" %}
                             {% else %}
                             <p>여기에 표시할 콘텐츠가 없습니다.</p>

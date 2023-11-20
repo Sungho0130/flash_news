@@ -1,28 +1,22 @@
 <div class="box" style="height:1500px; width:100%; overflow: scroll;">
-{% for i in detail_page %}
+{% for i in craw_ct %}
 	<div class="card" id="mouse-over-label">
 	<!-- 카드 헤더 -->
 		<div class="card-header">
-			<img src="{{ i.img }}" style="width: 500px; height: 300px;">
+			<img src="{{ i.img_ct }}" style="width: 500px; height: 300px;">
 		</div>
 		<!--카드 바디 -->
 		<div class="card-body">
 		<!--카드 바디 헤더 -->
 			<div class="card-body-header">
-				<h3>{{ i.title }}</h3>
-<!--					<br><br><br><br><br><br>-->
-				<div id="loading-screen-{{ forloop.counter }}">
-					<p>Loading... <img src="https://t1.daumcdn.net/cfile/tistory/184F8A4E4E55932B06" width="10" height="10"></p>
-				</div>
+				<h3>{{ i.title_ct }}</h3>
 			</div>
 			<!--카드 바디 본문 -->
 			<!-- 모델 결과를 표시할 부분 -->
-			<div class="card-text" id="result-section-{{ forloop.counter }}" style="display: none;">
-				<p>{{ i.summarize }}</p>
-			</div>
+				<p>{{ i.summarize_ct }}</p>
 			<!-- 마우스 호버링 버튼 -->
 			<div class="card-button">
-				<button class="button" onclick="window.open('{{ i.src }}')">본문 더 보기</button>
+				<button class="button" onclick="window.open('{{ i.src_ct }}')">본문 더 보기</button>
 			</div>
 			<!--카드 바디 푸터 -->
 			<div class="card-body-footer">
