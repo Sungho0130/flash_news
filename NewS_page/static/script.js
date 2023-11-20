@@ -55,3 +55,4 @@
 
     // 네비게이션 바의 초기 위치를 가져옵니다.
     var navbarOffset = navbar.offsetTop;
+

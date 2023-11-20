@@ -53,5 +53,5 @@ def job():
 
 def main():
     sched = BackgroundScheduler()
-    sched.add_job(job,'interval', seconds=10000000, id='test') # 크롤링하는 해오는 시간
+    sched.add_job(job,'interval', seconds=100000, id='test') # 크롤링하는 해오는 시간
     sched.start()
