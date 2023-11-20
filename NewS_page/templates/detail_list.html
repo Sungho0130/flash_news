@@ -1,23 +1,22 @@
 <div class="box" style="height:1500px; width:100%; overflow: scroll;">
 {% for j in craw_ct %}
-	{{ j }}
 	<div class="card" id="11">
 	<!-- 카드 헤더 -->
 		<div class="card-header">
-			<img src="{{ j.img }}" style="width: 500px; height: 300px;">
+			<img src="{{ j.img_ct }}" style="width: 500px; height: 300px;">
 		</div>
 		<!--카드 바디 -->
 		<div class="card-body card-text">
 		<!--카드 바디 헤더 -->
 			<div class="card-body-header">
-				<h3>{{ j.title }}</h3>
+				<h3>{{ j.title_ct }}</h3>
 			</div>
 			<!--카드 바디 본문 -->
 			<!-- 모델 결과를 표시할 부분 -->
-				<p>{{ j.summarize }}</p>
+				<p>{{ j.summarize_ct }}</p>
 			<!-- 마우스 호버링 버튼 -->
 			<div class="card-button">
-				<button class="custom-btn button btn-2" onclick="window.open('{{ j.src }}')">더 보기</button>
+				<button class="custom-btn button btn-2" onclick="window.open('{{ j.src_ct }}')">더 보기</button>
 			</div>
 			<!--카드 바디 푸터 -->
 			<div class="card-body-footer">

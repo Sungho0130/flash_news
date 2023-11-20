@@ -1,11 +1,34 @@
 import sched
-
 from apscheduler.schedulers.background import BackgroundScheduler
 from .news_craw import newscrawring, category_crawring
 from .models import Crawring, Crawring_ct
 from .model_call import summary
 from datetime import datetime, timedelta
 from tqdm import tqdm
+import concurrent.futures
+
+
+def summarize_parallel(content_list):
+    # content_list는 각각의 content를 포함하는 리스트입니다.
+
+    # 요약된 결과를 저장할 리스트
+    summarized_results = []
+
+    # 요약 모델을 병렬로 실행하는 함수
+    def run_summary(content):
+        return summary(content)
+
+    max_workers = min(len(content_list), 2)  # 예: 최대 10개의 스레드 사용
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+        # 각 content에 대해 run_summary 함수를 실행하고 결과를 리스트에 저장
+        results = list(executor.map(run_summary, content_list))
+        summarized_results.extend(results)
+
+    return summarized_results
+
+
+
+
 
 def data_num():
     max_records = 40
@@ -61,6 +84,18 @@ def job():
 
     if not Crawring.objects.filter(summarize=''):
         print('비어있는 summarize 없음')
+
+    # else:
+    #     content = []
+    #     for instance in tqdm(Crawring.objects.filter(summarize='')):
+    #         if instance.content < 20:
+    #             summarize = content
+    #         content.append(instance.content)
+    #     summarize = summarize_parallel(content)
+    #
+    #     if not instance.summarize:
+    #         instance.summarize = summarize
+    #         instance.save()
 
     else:
         for instance in tqdm(Crawring.objects.filter(summarize='')):
@@ -122,7 +157,7 @@ def job():
                 # 이미 채워진 content를 사용
                 content_ct = instance.content_ct
                 print('src: ', instance.src_ct)
-                if len(content_ct)>10:
+                if len(content_ct)>30:
                     # summary 모델을 돌리기
                     summarize_ct = summary(content_ct)
                 else:
@@ -140,7 +175,7 @@ def main():
     sched = BackgroundScheduler()
 
 
-    sched.add_job(job,'interval', minutes=60, id='test') #, next_run_time=datetime.now()
+    sched.add_job(job,'interval', minutes=60, id='test', next_run_time=datetime.now())
     sched.start()
 
 if __name__ == '__main__':

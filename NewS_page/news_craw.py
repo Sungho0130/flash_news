@@ -45,12 +45,18 @@ def iframe_src(detail_url):
         # WebDriverWait를 사용하여 페이지 로드 완료를 기다리기
         WebDriverWait(driver, 30).until(page_load_condition)
 
-        # Xpath를 사용하여 style 속성이 있는지 확인하는 조건
-        iframe_image_condition = EC.presence_of_element_located((By.XPATH, '//div[@id="coverImage" and @style]'))
+        try:
+
+            # Xpath를 사용하여 style 속성이 있는지 확인하는 조건
+            iframe_image_condition = EC.presence_of_element_located((By.XPATH, '//div[@id="coverImage" and @style]'))
 
 
-        # WebDriverWait를 사용하여 조건이 충족될 때까지 기다리기
-        WebDriverWait(driver, 30).until(iframe_image_condition)
+            # WebDriverWait를 사용하여 조건이 충족될 때까지 기다리기
+            WebDriverWait(driver, 30).until(iframe_image_condition)
+
+        except:
+            return 'https://t1.daumcdn.net/cfile/tistory/124DC8434F6717EB0C'
+
 
         # iframe 내에서 HTML 가져오기
         iframe_html = driver.page_source
