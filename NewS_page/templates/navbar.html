@@ -2,14 +2,23 @@
 <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
 <nav class="main-menu-con">
     <ul id="menu-main-menu" class="main-menu">
-        <li id="menu-item-35" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-35"><a href="/">홈</a></li>
-        <li id="menu-item-71" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-71"><a href="#">사회</a></li>
-        <li id="menu-item-856" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-856"><a href="#">정치</a></li>
-        <li id="menu-item-191" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a href="#">경제</a></li>
-        <li id="menu-item-192" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a href="#">국제</a></li>
-        <li id="menu-item-193" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-193"><a href="#">문화</a></li>
-        <li id="menu-item-194" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a href="#">IT</a></li>
-        <li id="menu-item-197" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-197"><a href="#">요약</a></li>
+        <li id="society" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-35"><a href="/">홈</a></li>
+        <li id="menu-item-71" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-71"><a
+            href="{% url 'main_page' %}?category=society">사회</a></li>
+        <li id="politics" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-856"><a
+            href="{% url 'main_page' %}?category=politics">정치</a></li>
+        <li id="economic" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a
+            href="{% url 'main_page' %}?category=economic">경제</a></li>
+        <li id="culture" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-193"><a
+            href="{% url 'main_page' %}?category=culture">문화</a></li>
+        <li id="entertain" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a
+            href="{% url 'main_page' %}?category=entertain">연예</a></li>
+        <li id="sports" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a
+            href="{% url 'main_page' %}?category=sports">스포츠</a></li>
+        <li id="digital" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a
+            href="{% url 'main_page' %}?category=digital">IT</a></li>
+        <li id="summary" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-197"><a
+            href="{% url 'main_page' %}?#">요약</a></li>
     </ul>
 </nav>
 
