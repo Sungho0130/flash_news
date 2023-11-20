@@ -1,30 +1,22 @@
 {% load static %}
 <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
-<nav class="main-menu-con">
-    <ul id="menu-main-menu" class="main-menu">
-        <li id="society" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-35"><a href="/">홈</a></li>
-        <li id="menu-item-71" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-71"><a
-            href="{% url 'main_page' %}?category=society">사회</a></li>
-        <li id="politics" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-856"><a
-            href="{% url 'main_page' %}?category=politics">정치</a></li>
-        <li id="economic" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-191"><a
-            href="{% url 'main_page' %}?category=economic">경제</a></li>
-        <li id="culture" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-193"><a
-            href="{% url 'main_page' %}?category=culture">문화</a></li>
-        <li id="entertain" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-192"><a
-            href="{% url 'main_page' %}?category=entertain">연예</a></li>
-        <li id="sports" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a
-            href="{% url 'main_page' %}?category=sports">스포츠</a></li>
-        <li id="digital" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-194"><a
-            href="{% url 'main_page' %}?category=digital">IT</a></li>
-        <li id="summary" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-197"><a
-            href="{% url 'main_page' %}?#">요약</a></li>
-    </ul>
+<link href="{% static 'nav.css' %}" rel="stylesheet" type="text/css">
+<nav class="black" style="">
+        <div class="underline"></div>
+        <div class="underline"></div>
+        <div class="underline"></div>
+        <a onClick="ul(0)">홈</a>
+        <a onClick="ul(1)">사회</a>
+        <a onClick="ul(2)">정치</a>
+        <a onClick="ul(3)">경제</a>
+        <a onClick="ul(4)">국제</a>
+        <a onClick="ul(5)">문화</a>
+        <a onClick="ul(6)">IT</a>
+        <a onClick="ul(7)">요약</a>
 </nav>
-
 <script>
     window.addEventListener('scroll', function() {
-          var navbar = document.querySelector('.main-menu-con');
+          var navbar = document.querySelector('.black');
           var menuItems = document.querySelectorAll('.main-menu-con li');
           var scrollPosition = window.scrollY;
 
@@ -42,4 +34,29 @@
         });
       }
     });
+    // 언더라인 바 기능
+    function ul(index) {
+        console.log('click!' + index)
+
+        var underlines = document.querySelectorAll(".underline");
+        var navButtons = document.querySelectorAll("nav a");
+
+        if (index >= 0 && index < navButtons.length) {
+            var buttonWidth = navButtons[index].offsetWidth; // 버튼의 너비 가져오기
+            var buttonOffsetLeft = navButtons[index].offsetLeft; // 버튼의 왼쪽 위치 가져오기
+
+            for (var i = 0; i < underlines.length; i++) {
+                underlines[i].style.width = buttonWidth + "px"; // 언더라인의 너비 설정
+                underlines[i].style.transform = 'translate3d(' + buttonOffsetLeft + 'px,0,0)'; // 언더라인의 위치 설정
+            }
+
+            // 모든 링크에서 'active' 클래스 제거
+            for (var i = 0; i < navButtons.length; i++) {
+                navButtons[i].classList.remove("active");
+            }
+
+            // 클릭한 링크에 'active' 클래스 추가
+            navButtons[index].classList.add("active");
+        }
+    }
 </script>
