@@ -14,7 +14,6 @@ def main_page(request):
         cate = request.GET.get('category', None)
         print('cate: ',cate)
         craw_ct = Crawring_ct.objects.filter(category=cate).exclude(summarize_ct='').order_by('-created_at_ct')[:30]
-        # print('craw_ct: ',craw_ct)
         return render(request, "main.html", {'craw_ct': craw_ct})
 
     return render(request, "main.html", {'craw': craw})

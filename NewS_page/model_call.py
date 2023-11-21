@@ -10,4 +10,10 @@ def summary(content_text : str):
     else:
         content_text = content_text[:len(content_text)]
 
-    return summarize(content_text)
+
+    if len(content_text) > 30:
+        result = summarize(content_text)
+    else:
+        result = content_text
+
+    return result

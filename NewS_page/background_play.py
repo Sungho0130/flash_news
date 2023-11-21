@@ -1,4 +1,3 @@
-import sched
 from apscheduler.schedulers.background import BackgroundScheduler
 from .news_craw import newscrawring, category_crawring
 from .models import Crawring, Crawring_ct
@@ -18,7 +17,7 @@ def summarize_parallel(content_list):
     def run_summary(content):
         return summary(content)
 
-    max_workers = min(len(content_list), 5)  # 예: 최대 10개의 스레드 사용
+    max_workers = min(len(content_list), 5)  # 예: 최대 5개의 스레드 사용
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         # 각 content에 대해 run_summary 함수를 실행하고 결과를 리스트에 저장
         results = list(executor.map(run_summary, content_list))
@@ -155,16 +154,16 @@ def job():
 
 
         else:
-
-            content_ct_queryset = Crawring_ct.objects.filter(summarize_ct='',ctegory=cate).exclude(title_ct='').values_list('content_ct', flat=True)
+            content_ct_queryset = Crawring_ct.objects.filter(summarize_ct='', category=cate).exclude(title_ct='').values_list('content_ct', flat=True)
             content_ct_list = list(content_ct_queryset)
             summarized_ct_results = summarize_parallel(content_ct_list)
 
-            queryset_ct = Crawring_ct.objects.filter(summarize_ct='', title_ct__isnull=False,ctegory=cate)
+            queryset_ct = Crawring_ct.objects.filter(summarize_ct='', title_ct__isnull=False, category=cate)
 
-            for obj, summary_text in tqdm(zip(queryset_ct, summarized_ct_results)):
+            for obj, summary_text in zip(queryset_ct, summarized_ct_results):
                 obj.summarize_ct = summary_text
                 obj.save()
+
 
 
             # for instance in tqdm(Crawring_ct.objects.filter(summarize_ct='').exclude(title_ct='')):
@@ -190,9 +189,10 @@ def job():
 
 def main():
     sched = BackgroundScheduler()
-    # next_run_time = datetime.now() + timedelta(hours=1)
+
+    sched.remove_all_jobs()
+
     sched.add_job(job,'interval', minutes=60, id='test',  next_run_time=datetime.now())
-    # sched.add_job(job, 'interval', minutes=60, id='test')
 
     sched.start()
 
