@@ -17,7 +17,7 @@ def summarize_parallel(content_list):
     def run_summary(content):
         return summary(content)
 
-    max_workers = min(len(content_list), 5)  # 예: 최대 5개의 스레드 사용
+    max_workers = min(len(content_list), 8)  # 예: 최대 ?개의 스레드 사용
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         # 각 content에 대해 run_summary 함수를 실행하고 결과를 리스트에 저장
         results = list(executor.map(run_summary, content_list))
@@ -121,6 +121,8 @@ def job():
     cate_list = ['society', 'politics', 'economic', 'culture', 'entertain', 'sports', 'digital']
 
     for cate in cate_list:
+
+        print(f'{cate}크롤링 시작')
 
         news_ct = category_crawring(cate)
 
