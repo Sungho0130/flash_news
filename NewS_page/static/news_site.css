@@ -10,10 +10,42 @@
         border-radius: 0.2em; /* Rounded corners */
     }
     .cjs_channel_title {
+        margin-top: 22px;
         border-bottom: 1px solid #000; /* 밑줄 스타일 설정 */
         padding-bottom: 10px; /* 밑줄과 내용 사이의 간격 조정 */
         margin-bottom: 20px; /* 종합지와 다음 요소 사이의 간격 조정 */
     }
     .cjs_age_item img {
         border-radius: 0.5em;
+    }
+    /* 페이지네이션 */
+    .pagination {
+        text-align: center;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+    }
+    .step-links a {
+        display: inline-block;
+        padding: 8px 14px;
+        margin: 0 4px;
+        border: 1px solid #333;
+        border-radius: 15px;
+        background-color: #f9f9f9;
+        color: #333;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .step-links a:hover {
+        background-color: #e9e9e9;
+    }
+
+    .step-links .current {
+        display: inline-block;
+        padding: 8px 14px;
+        margin: 0 4px;
+        border: 1px solid #222;
+        border-radius: 15px;
+        background: rgb(190,190,190);
+        color: #fff;
     }

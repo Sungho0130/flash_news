@@ -3,7 +3,7 @@
 	<div class="card" id="mouse-over-label">
 	<!-- 카드 헤더 -->
 		<div class="card-header">
-			<img src="{{ i.img }}" style="width: 500px; height: 300px;">
+			<img src="{{ i.img }}" style="width: 500px; height: 400px;">
 		</div>
 		<!--카드 바디 -->
 		<div class="card-body card-text">
@@ -25,18 +25,22 @@
 		</div>
 	</div>
 {% endfor %}
-	<!-- 페이지네이션 -->
+	<!-- 페이징네이션 -->
 	<div class="pagination">
 		<span class="step-links">
 			{% if craw.has_previous %}
 				<a href="?page=1">&laquo; first</a>
-				<a href="?page={{ craw.previous_page_number }}">previous</a>
+				<a href="?page={{ craw.previous_page_number }}"> < </a>
 			{% endif %}
-			<span class="current">
-				Page {{ craw.number }} of {{ craw.paginator.num_pages }}.
-			</span>
+			{% for i in craw.paginator.page_range %}
+				{% if i == craw.number %}
+					<span class="current">{{ i }}</span>
+				{% else %}
+					<a href="?page={{ i }}">{{ i }}</a>
+				{% endif %}
+			{% endfor %}
 			{% if craw.has_next %}
-				<a href="?page={{ craw.next_page_number }}">next</a>
+				<a href="?page={{ craw.next_page_number }}"> > </a>
 				<a href="?page={{ craw.paginator.num_pages }}">last &raquo;</a>
 			{% endif %}
 		</span>

@@ -4,6 +4,7 @@
     <head>
         <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'copy.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'footer.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'news_site.css' %}" rel="stylesheet" type="text/css">
         <script src="{% static 'script.js' %}" type="text/javascript"></script>
         <title>플래시뉴-으스</title>
@@ -25,7 +26,7 @@
         <div class="container">
             <header class="global-header">
                <div class="nine" onclick="window.location.href='/'" style="cursor: pointer;">
-                  <h1>Quick-News<span>dkssud-gktpdy</span></h1>
+                  <h1>Flash-News<span>dkssud-gktpdy</span></h1>
                 </div>
                 <!-- 내비게이션 바 -->
                 {% include "navbar.html" %}
@@ -78,9 +79,8 @@
             </div>
 
             <!-- footer -->
-            <footer class="global-footer">
-                <p class="copyright">&copy; 여기에는 footer를 넣을 예정입니다. 공사중</p>
-            </footer>
+                {% include "footer.html" %}
+
         </div>
         <!-- 맨 위로 스크롤 -->
         <button onclick="backToTop()" id="btn-back-to-top" title="위로 가기">Top</button>

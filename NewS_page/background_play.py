@@ -12,7 +12,7 @@ def summarize_parallel(content_list):
     # 요약 모델을 병렬로 실행하는 함수
     def run_summary(content):
         return summary(content)
-    max_workers = min(len(content_list), 8)  # 예: 최대 ?개의 스레드 사용
+    max_workers = min(len(content_list), 4)  # 예: 최대 ?개의 스레드 사용(본인 컴퓨터에 맞는 스레드 사용)
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         # 각 content에 대해 run_summary 함수를 실행하고 결과를 리스트에 저장
         results = list(executor.map(run_summary, content_list))
@@ -130,7 +130,7 @@ def job():
 def main():
     sched = BackgroundScheduler()
     sched.remove_all_jobs()
-    sched.add_job(job,'interval', minutes=60, id='test',  next_run_time=datetime.now())
-    #sched.start()
+    # sched.add_job(job,'interval', minutes=60, id='test',  next_run_time=datetime.now()) # job 모델 얼마나 한번씩 돌릴건지
+    # sched.start() # job 모델 시작하는 코드
 if __name__ == '__main__':
     main()
