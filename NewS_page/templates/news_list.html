@@ -1,4 +1,3 @@
-
 {% for i in craw %}
 	<div class="card" id="mouse-over-label">
 	<!-- 카드 헤더 -->
@@ -45,19 +44,14 @@
 			{% endif %}
 		</span>
 	</div>
-
-
 <script>
-
 	// 인터넷 스크롤 진행률 상태바
-	window.onscroll = function() {createPrograssBar()};
+	window.onscroll = function() {createPrograssBar()};     // 스크롤시 진행률 바를 생성하는 함수를 호출합니다.
 
 	function createPrograssBar() {
-	  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-	  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-	  var scrolled = (winScroll / height) * 100;
-	  document.getElementById("indicator").style.width = scrolled + "%";
+	  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;                // 스크롤된 길이를 가져옴
+	  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;   // 페이지의 총 길이를 계산
+	  var scrolled = (winScroll / height) * 100;                                // 스크롤된 백분율을 계산
+	  document.getElementById("indicator").style.width = scrolled + "%";        // 상태 바의 너비를 스크롤된 백분율로 설정하여 진행 상황을 표시
 	}
-
-
 </script>

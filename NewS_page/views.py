@@ -1,9 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .models import Crawring, Crawring_ct
-from .news_craw import newscrawring
-from .model_call import summary
-from django.http import JsonResponse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
 import time
 def main_page(request):
     # 요약이 없는 모든 Crawring 객체를 가져오고 생성 날짜 순으로 정렬

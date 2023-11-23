@@ -1,62 +1,37 @@
 {% load static %}
 <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'nav.css' %}" rel="stylesheet" type="text/css">
-    <nav class="black" style="">
-        <div class="underline"></div>
-        <div class="underline"></div>
-        <div class="underline"></div>
-        <a onClick="ul(0)">홈</a>
-        <a onClick="ul(1)">사회</a>
-        <a onClick="ul(2)">정치</a>
-        <a onClick="ul(3)">경제</a>
-        <a onClick="ul(4)">문화</a>
-        <a onClick="ul(5)">연예</a>
-        <a onClick="ul(6)">스포츠</a>
-        <a onClick="ul(7)">IT</a>
-    </nav>
+<nav class="black" style="">
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <div class="underline"></div>
+    <a href="/"><span onClick="ul(0)">홈</span></a>
+    <a href="/?category=society"><span onClick="ul(1)">사회</span></a>
+    <a href="/?category=politics"><span onClick="ul(2)">정치</span></a>
+    <a href="/?category=economic"><span onClick="ul(3)">경제</span></a>
+    <a href="/?category=culture"><span onClick="ul(4)">문화</span></a>
+    <a href="/?category=entertain"><span onClick="ul(5)">연예</span></a>
+    <a href="/?category=sports"><span onClick="ul(6)">스포츠</span></a>
+    <a href="/?category=IT"><span onClick="ul(7)">IT</span></a>
+</nav>
 <script>
     window.addEventListener('scroll', function() {
-          var navbar = document.querySelector('.black');
-          var menuItems = document.querySelectorAll('.main-menu-con li');
-          var scrollPosition = window.scrollY;
+          var navbar = document.querySelector('.black');                    // 블랙 클래스를 가진 네비게이션 바를 가져옴
+          var menuItems = document.querySelectorAll('.main-menu-con li');   // 메뉴 아이템들을 가져옴
+          var scrollPosition = window.scrollY;                              // 스크롤 위치를 가져옴
 
-          var stickyPosition = 100;
+          var stickyPosition = 100;                         // 네비게이션 바가 고정되는 위치를 지정
 
-    if (scrollPosition >= stickyPosition) {
-        navbar.classList.add('fixed-navbar');
-        menuItems.forEach(function(item) {
-            item.style.marginRight = '120px';
+    if (scrollPosition >= stickyPosition) {                 // 스크롤 위치가 고정 위치 이상이면
+        navbar.classList.add('fixed-navbar');               // 네비게이션 바에 고정 클래스를 추가
+        menuItems.forEach(function(item) {                  // 모든 메뉴 아이템에 대해
+            item.style.marginRight = '120px';               // 오른쪽 여백을 추가하여 고정된 네비게이션 바 고려한 스타일을 적용
         });
     } else {
-        navbar.classList.remove('fixed-navbar');
-        menuItems.forEach(function(item) {
-            item.style.marginRight = '0'; // 마진 제거
+        navbar.classList.remove('fixed-navbar');            // 네비게이션 바의 고정 클래스를 제거
+        menuItems.forEach(function(item) {                  // 모든 메뉴 아이템에 대해
+            item.style.marginRight = '0';                   // 오른쪽 여백을 제거하여 스타일을 원래 상태로 되돌립
         });
       }
     });
-    // 언더라인 바 기능
-    function ul(index) {
-        console.log('click!' + index)
-
-        var underlines = document.querySelectorAll(".underline");
-        var navButtons = document.querySelectorAll("nav a");
-
-        if (index >= 0 && index < navButtons.length) {
-            var buttonWidth = navButtons[index].offsetWidth; // 버튼의 너비 가져오기
-            var buttonOffsetLeft = navButtons[index].offsetLeft; // 버튼의 왼쪽 위치 가져오기
-
-            for (var i = 0; i < underlines.length; i++) {
-                underlines[i].style.width = buttonWidth + "px"; // 언더라인의 너비 설정
-                underlines[i].style.transform = 'translate3d(' + buttonOffsetLeft + 'px,0,0)'; // 언더라인의 위치 설정
-            }
-
-            // 모든 링크에서 'active' 클래스 제거
-            for (var i = 0; i < navButtons.length; i++) {
-                navButtons[i].classList.remove("active");
-            }
-
-            // 클릭한 링크에 'active' 클래스 추가
-            navButtons[index].classList.add("active");
-        }
-    }
 </script>

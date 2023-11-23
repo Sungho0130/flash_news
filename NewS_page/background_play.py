@@ -12,7 +12,7 @@ def summarize_parallel(content_list):
     # 요약 모델을 병렬로 실행하는 함수
     def run_summary(content):
         return summary(content)
-    max_workers = min(len(content_list), 4)  # 예: 최대 ?개의 스레드 사용(본인 컴퓨터에 맞는 스레드 사용)
+    max_workers = min(len(content_list), 2)  # 예: 최대 ?개의 스레드 사용(본인 컴퓨터에 맞는 스레드 사용)
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         # 각 content에 대해 run_summary 함수를 실행하고 결과를 리스트에 저장
         results = list(executor.map(run_summary, content_list))
@@ -65,27 +65,13 @@ def job():
         for obj, summary_text in tqdm(zip(queryset, summarized_results)):
             obj.summarize = summary_text
             obj.save()
-        # for instance in tqdm(Crawring.objects.filter(summarize='').exclude(title='')):
-        #     # 이미 채워진 content를 사용
-        #     content = instance.content
-        #
-        #     if len(content)>10:
-        #         # summary 모델을 돌리기
-        #         summarize = summary(content)
-        #     else:
-        #         summarize = content
-        #
-        #     # summarize가 비어있는 경우에만 저장
-        #     if not instance.summarize:
-        #         instance.summarize = summarize
-        #         instance.save()
         print('요약 모델 작동 완료')
     cate_list = ['society', 'politics', 'economic', 'culture', 'entertain', 'sports', 'digital']
     for cate in cate_list:
         print(f'{cate}크롤링 시작')
         news_ct = category_crawring(cate)
         print(f'{cate} 크롤링 완료!')
-        if len(news_ct['title']) != None:
+        try:
             for i in range(len(news_ct['title'])):
                 # 중복 확인
                 if not Crawring_ct.objects.filter(title_ct=news_ct["title"][i]).exists():
@@ -97,7 +83,7 @@ def job():
                     # Crawring 모델 인스턴스 생성 및 저장
                     Crawring_ct.objects.create(title_ct=title_ct, content_ct=content_ct, img_ct=img_ct, src_ct=src_ct, category=category)
             print(f'{cate} 데이터베이스 저장 완료')
-        else:
+        except:
             print('크롤링 필요없음')
         # 해당카테고리의 오래된 순서로 90개초과시 삭제
         data_num_ct(cate)
@@ -111,26 +97,11 @@ def job():
             for obj, summary_text in zip(queryset_ct, summarized_ct_results):
                 obj.summarize_ct = summary_text
                 obj.save()
-            # for instance in tqdm(Crawring_ct.objects.filter(summarize_ct='').exclude(title_ct='')):
-            #
-            #     # 이미 채워진 content를 사용
-            #     content_ct = instance.content_ct
-            #     print('src: ', instance.src_ct)
-            #     if len(content_ct)>30:
-            #         # summary 모델을 돌리기
-            #         summarize_ct = summary(content_ct)
-            #     else:
-            #         summarize_ct = content_ct
-            #
-            #     # summarize가 비어있는 경우에만 저장
-            #     if not instance.summarize_ct:
-            #         instance.summarize_ct = summarize_ct
-            #         instance.save()
             print('요약 모델 작동 완료')
 def main():
     sched = BackgroundScheduler()
     sched.remove_all_jobs()
-    # sched.add_job(job,'interval', minutes=60, id='test',  next_run_time=datetime.now()) # job 모델 얼마나 한번씩 돌릴건지
-    # sched.start() # job 모델 시작하는 코드
+    sched.add_job(job,'interval', minutes=60, id='test',  next_run_time=datetime.now()) # job 모델 얼마나 한번씩 돌릴건지
+    sched.start() # job 모델 시작하는 코드
 if __name__ == '__main__':
     main()
