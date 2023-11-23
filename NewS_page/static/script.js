@@ -78,13 +78,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 카테고리의 인덱스 가져오기
     function getCategoryIndex(category) {
-        var categories = ['home', 'society', 'politics', 'economic', 'culture', 'entertain', 'sports', 'IT']; // 카테고리 순서대로 배열에 저장
+        var categories = ['home', 'society', 'politics', 'economic', 'culture', 'entertain', 'sports', 'digital']; // 카테고리 순서대로 배열에 저장
         return categories.indexOf(category); // 배열에서 해당 카테고리의 인덱스 반환
     }
 
     // 카테고리 페이지로 이동
     function navigateToCategory(index) {
-        var categories = ['/', '/?category=society', '/?category=politics', '/?category=economic', '/?category=culture', '/?category=entertain', '/?category=sports', '/?category=IT'];
+        var categories = ['/', '/?category=society', '/?category=politics', '/?category=economic', '/?category=culture', '/?category=entertain', '/?category=sports', '/?category=digital'];
         window.location.href = categories[index];
     }
 

@@ -1,59 +1,58 @@
-<div class="box" style="height:1500px; width:100%; overflow: scroll;">
-{% for i in detail_page %}
+{% for i in craw_ct %}
 	<div class="card" id="mouse-over-label">
 	<!-- 카드 헤더 -->
 		<div class="card-header">
-			<img src="{{ i.img }}" style="width: 500px; height: 300px;">
+			<img src="{{ i.img_ct }}" style="width: 500px; height: 400px;">
 		</div>
 		<!--카드 바디 -->
-		<div class="card-body">
+		<div class="card-body card-text">
 		<!--카드 바디 헤더 -->
 			<div class="card-body-header">
-				<h3>{{ i.title }}</h3>
-				<div id="loading-screen-{{ forloop.counter }}">
-					<p>Loading... <img src="https://t1.daumcdn.net/cfile/tistory/184F8A4E4E55932B06" width="10" height="10"></p>
-				</div>
+				<h3>{{ i.title_ct }}</h3>
 			</div>
 			<!--카드 바디 본문 -->
 			<!-- 모델 결과를 표시할 부분 -->
-			<div class="card-text" id="result-section-{{ forloop.counter }}" style="display: none;">
-				<p>{{ i.summarize }}</p>
-			</div>
+				<p>{{ i.summarize_ct }}</p>
 			<!-- 마우스 호버링 버튼 -->
 			<div class="card-button">
-				<button class="button" onclick="window.open('{{ i.src }}')">본문 더 보기</button>
+				<button class="custom-btn button btn-2" onclick="window.open('{{ i.src_ct }}')">더 보기</button>
 			</div>
 			<!--카드 바디 푸터 -->
 			<div class="card-body-footer">
-				<hr style="margin-bottom: 2px; opacity: 0.5; border-color: #EF5A31">
+				<hr style="margin-bottom: 2px; opacity: 0.7; border-color: #D3D3D3">
 			</div>
 		</div>
 	</div>
 {% endfor %}
-    <!-- 페이지네이션 링크 -->
+	<!-- 페이징네이션 -->
 	<div class="pagination">
-        <span class="step-links">
-            {% if detail_page.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ detail_page.previous_page_number }}">previous</a>
-            {% endif %}
-            <span class="current">
-                Page {{ detail_page.number }} of {{ detail_page.paginator.num_pages }}.
-            </span>
-            {% if detail_page.has_next %}
-                <a href="?page={{ detail_page.next_page_number }}">next</a>
-                <a href="?page={{ detail_page.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
-</div>
+		<span class="step-links">
+			{% if craw_ct.has_previous %}
+				<a href="?category={{ category }}&page=1">&laquo; first</a>
+				<a href="?category={{ category }}&page={{ craw_ct.previous_page_number }}"> < </a>
+			{% endif %}
+			{% for i in craw_ct.paginator.page_range %}
+				{% if i == craw_ct.number %}
+					<span class="current">{{ i }}</span>
+				{% else %}
+					<a href="?category={{ category }}&page={{ i }}">{{ i }}</a>
+				{% endif %}
+			{% endfor %}
+			{% if craw_ct.has_next %}
+				<a href="?category={{ category }}&page={{ craw_ct.next_page_number }}"> > </a>
+				<a href="?category={{ category }}&page={{ craw_ct.paginator.num_pages }}">last &raquo;</a>
+			{% endif %}
+		</span>
+	</div>
 <script>
-    // 인터넷 스크롤 진행률 상태바
-    window.onscroll = function() {createPrograssBar()};
-    function createPrograssBar() {
-      var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      var scrolled = (winScroll / height) * 100;
-      document.getElementById("indicator").style.width = scrolled + "%";
-    }
+	// 인터넷 스크롤 진행률 상태바
+	window.onscroll = function() {createPrograssBar()};     // 스크롤시 진행률 바를 생성하는 함수를 호출합니다.
+
+	function createPrograssBar() {
+	  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;                // 스크롤된 길이를 가져옴
+	  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;   // 페이지의 총 길이를 계산
+	  var scrolled = (winScroll / height) * 100;                                // 스크롤된 백분율을 계산
+	  document.getElementById("indicator").style.width = scrolled + "%";        // 상태 바의 너비를 스크롤된 백분율로 설정하여 진행 상황을 표시
+	}
+
 </script>

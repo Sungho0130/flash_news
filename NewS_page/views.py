@@ -23,7 +23,7 @@ def main_page(request):
         # Paginator에서 해당 페이지를 가져옴
         page = paginator.get_page(page_number)
 
-        return render(request, "main.html", {'craw_ct': page})
+        return render(request, "main.html", {'craw_ct': page, 'category': cate})
     else:
 
         # 메인 Crawring 쿼리셋용 Paginator를 초기화
