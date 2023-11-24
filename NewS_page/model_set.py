@@ -1,6 +1,9 @@
 from transformers import BertTokenizerFast
 from transformers import EncoderDecoderModel
+import os
+
 class Summarize():
+    os.environ['TOKENIZERS_PARALLELISM'] = 'True'
     def __init__(self, model_name:str, tokenizer_name:str):
         self.model = EncoderDecoderModel.from_pretrained(model_name)
         self.tokenizer = BertTokenizerFast.from_pretrained(tokenizer_name)

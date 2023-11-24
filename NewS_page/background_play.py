@@ -5,6 +5,11 @@ from .model_call import summary
 from datetime import datetime, timedelta
 from tqdm import tqdm
 import concurrent.futures
+import time
+
+# 전역 변수로 sched 정의
+sched = BackgroundScheduler()
+
 def summarize_parallel(content_list):
     # content_list는 각각의 content를 포함하는 리스트입니다.
     # 요약된 결과를 저장할 리스트
@@ -62,7 +67,7 @@ def job():
         content_list = list(content_queryset)
         summarized_results = summarize_parallel(content_list)
         queryset = Crawring.objects.filter(summarize='', title__isnull=False)
-        for obj, summary_text in tqdm(zip(queryset, summarized_results)):
+        for obj, summary_text in zip(queryset, summarized_results):
             obj.summarize = summary_text
             obj.save()
         print('요약 모델 작동 완료')
@@ -99,6 +104,10 @@ def job():
                 obj.save()
             print('요약 모델 작동 완료')
 def main():
+    global sched  # 전역 변수로 사용할 것을 명시
+    if sched.running:
+        sched.shutdown()
+        time.sleep(5)
     sched = BackgroundScheduler()
     sched.remove_all_jobs()
     sched.add_job(job,'interval', minutes=60, id='test',  next_run_time=datetime.now()) # job 모델 얼마나 한번씩 돌릴건지
