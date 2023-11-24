@@ -62,7 +62,7 @@ def job():
         content_list = list(content_queryset)
         summarized_results = summarize_parallel(content_list)
         queryset = Crawring.objects.filter(summarize='', title__isnull=False)
-        for obj, summary_text in tqdm(zip(queryset, summarized_results)):
+        for obj, summary_text in zip(queryset, summarized_results):
             obj.summarize = summary_text
             obj.save()
         print('요약 모델 작동 완료')
