@@ -9,6 +9,8 @@ from selenium.webdriver.support import expected_conditions as EC
 import re
 from .models import Crawring, Crawring_ct
 import time
+from tqdm import tqdm
+
 def iframe_src(detail_url):
     extracted_url = ''
     chrome_options = Options()
@@ -77,7 +79,7 @@ def newscrawring():
     home = [item for item in home if item not in model_values]
     if len(home) == 0:
         return print('pass')
-    for url_de in home:
+    for url_de in tqdm(home):
         page = urlopen(url_de)
         soup2 = BeautifulSoup(page, "lxml")
         # 기사 링크
@@ -135,7 +137,7 @@ def category_crawring(category: str) -> dict:
         home = [item for item in home if item not in model_values]
         if len(home) == 0:
             return print('pass')
-        for url_de in home:
+        for url_de in tqdm(home):
             time.sleep(0.5)
             page = urlopen(url_de)
             soup2 = BeautifulSoup(page, "lxml")
