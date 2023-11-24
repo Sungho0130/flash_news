@@ -37,9 +37,9 @@ def get_secret(setting, secrets=secrets):
 SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["192.168.9.81"]
 
 
 # Application definition
@@ -120,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'Asia/Seoul'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -138,12 +138,3 @@ STATIC_ROOT = BASE_DIR / "staticfiles"  # "staticfiles"는 원하는 디렉토�
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-# 이메일 보내는 기능
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = "smtp.gmail.com" # 메일을 호스트하는 서버
-EMAIL_PORT = 587 # gmail과 통신하는 포트
-EMAIL_HOST_USER = 'starhochoitest@gmail.com' # 발신할 이메일
-EMAIL_HOST_PASSWORD = 'xuunauevahmmbofc' # 발신할 이메일의 비밀번호
-EMAIL_USE_TLS = True # TLS 보안 방법
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER # 사이트와 관련한 자동응답을 받을 이메일 주소

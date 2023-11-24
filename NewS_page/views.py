@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .models import Crawring, Crawring_ct
 from django.core.paginator import Paginator
-from django.core.mail import EmailMessage
 import time
 def main_page(request):
     # 요약이 없는 모든 Crawring 객체를 가져오고 생성 날짜 순으로 정렬
@@ -37,19 +36,3 @@ def main_page(request):
         page = paginator.get_page(page_number)
 
         return render(request, "main.html", {'craw': page})
-
-def email_page(request):
-    if request.method == 'POST':
-        email = EmailMessage(
-            f"새로운 문의 내용",  # 이메일 제목
-            f"""내용 : {request.POST.get("message", "예약 내용")} 
-        연락처 : {request.POST.get("email", "연락처 미공개")}""",  #이메일 내용
-            to=['starhochoitest@gmail.com'],  # 받는 이메일
-        )
-        email.send()
-        return redirect('/')
-    else:
-        return redirect("/")
-
-    # 여기 redirect가 잘 안돌아가는데 이유는 백그라운드에서 모델이 계속 도는데
-    # 서버가 이메일을 보내고 redirect까지 한번 수행하는게 안됨. 모델을 꺼버리면 잘됨.

@@ -22,48 +22,6 @@
     height: 5px;
     background-color:#f8f8f8;
 }
-/* 이메일 */
-.email-form-container {
-    background-color: rgb(190, 190, 190);
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px 0;
-}
-
-.email-form-container h2 {
-    color: #333;
-}
-
-.email-form-container label {
-    font-size: 20px;
-    display: block;
-    margin-top: 10px;
-    color: #333;
-}
-
-.email-form-container input,
-.email-form-container textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.email-form-container button {
-    background-color: rgb(150,150,150);
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-}
-
-.email-form-container button:hover {
-    background-color: rgb(100, 100, 100);
-}
 /* 로고 컨테이너 */
 .main-header-logo {
     text-align: center; /* 부모 요소 안에서 텍스트 정렬을 가운데로 설정합니다. */
