@@ -1,5 +1,5 @@
 from urllib.request import urlopen
-from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -16,7 +16,8 @@ def iframe_src(detail_url):
     chrome_options.add_argument('--headless')  # headless 모드 활성화
     chrome_options.add_argument('--disable-gpu')  # GPU 가속 비활성화
     chrome_options.add_argument("--user-agent=Mozilla/5.0")
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+    chrome_driver_path = "../chromedriver.exe"
+    driver = webdriver.Chrome(service=ChromeService(executable_path=chrome_driver_path), options=chrome_options)
     # 웹페이지 열기
     driver.get(detail_url)
     # 명시적 대기: 최대 50초 동안 player_iframe 클래스가 있는 iframe을 찾을 때까지 기다림
