@@ -100,8 +100,8 @@ def job():
             print('요약 모델 작동 완료')
 def main():
     sched = BackgroundScheduler()
-    sched.remove_all_jobs()
-    sched.add_job(job,'interval', minutes=60, id='test',  next_run_time=datetime.now()) # job 모델 얼마나 한번씩 돌릴건지
-    sched.start() # job 모델 시작하는 코드
+    # sched.remove_all_jobs()
+    # sched.add_job(job,'interval', minutes=60, id='test',  next_run_time=datetime.now()) # job 모델 얼마나 한번씩 돌릴건지
+    # sched.start() # job 모델 시작하는 코드
 if __name__ == '__main__':
     main()

@@ -28,7 +28,7 @@
             <!-- 메인 로고 -->
             <header class="global-header">
                <div class="nine" onclick="window.location.href='/'" style="cursor: pointer;">
-                  <h1>Flash-News<span>fake-fade-fast</span></h1>
+                  <h1>Flash-News<span>|| summary ||</span></h1>
                 </div>
                 <!-- 내비게이션 바 -->
                 {% include "navbar.html" %}
@@ -76,6 +76,23 @@
                                                                   id="ww_7a5c5643a5d14_u" target="_blank">일기 예보 서울</a></div>
                     <script async src="https://app2.weatherwidget.org/js/?id=ww_7a5c5643a5d14"></script>
                 </div>
+                <!-- 이메일 폼 추가 -->
+                <div class="email-form-container">
+                    <h2>Contact us</h2>
+                    <form action="{% url 'email_page' %}" method="post">
+                        {% csrf_token %}
+                        <!-- 이메일 입력 필드 -->
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <!-- 메시지 입력 필드 -->
+                        <label for="message">message</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+
+                        <!-- 폼 제출 버튼 -->
+                        <button type="submit">이메일 보내기</button>
+                    </form>
+                </div>
             </div>
             <!-- 오른쪽 사이드 -->
             <div class="main-sidebar sidebar sidebar-b banners">
@@ -88,6 +105,50 @@
         <button onclick="backToTop()" id="btn-back-to-top" title="위로 가기">Top</button>
     </body>
 </html>
+<style>
+    /* 이메일 */
+    .email-form-container {
+        background-color: rgb(190, 190, 190);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+    }
+
+    .email-form-container h2 {
+        color: #333;
+    }
+
+    .email-form-container label {
+        font-size: 20px;
+        display: block;
+        margin-top: 10px;
+        color: #333;
+    }
+
+    .email-form-container input,
+    .email-form-container textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .email-form-container button {
+        background-color: rgb(140,140,140);
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    .email-form-container button:hover {
+        background-color: rgb(100, 100, 100);
+    }
+</style>
 <script>
   	var Target = document.getElementById("clock");      // 시계를 나타내는 요소
 	var Target_apm = document.getElementById("apm");    // 오전/오후를 나타내는 요소
