@@ -3,7 +3,7 @@ from .news_craw import newscrawring, category_crawring
 from .models import Crawring, Crawring_ct
 from .model_call import summary
 from datetime import datetime, timedelta
-from tqdm import tqdm
+
 import concurrent.futures
 def summarize_parallel(content_list):
     # content_list는 각각의 content를 포함하는 리스트입니다.
@@ -62,7 +62,7 @@ def job():
         content_list = list(content_queryset)
         summarized_results = summarize_parallel(content_list)
         queryset = Crawring.objects.filter(summarize='', title__isnull=False)
-        for obj, summary_text in tqdm(zip(queryset, summarized_results)):
+        for obj, summary_text in zip(queryset, summarized_results):
             obj.summarize = summary_text
             obj.save()
         print('요약 모델 작동 완료')
@@ -92,6 +92,7 @@ def job():
         else:
             content_ct_queryset = Crawring_ct.objects.filter(summarize_ct='', category=cate).exclude(title_ct='').values_list('content_ct', flat=True)
             content_ct_list = list(content_ct_queryset)
+
             summarized_ct_results = summarize_parallel(content_ct_list)
             queryset_ct = Crawring_ct.objects.filter(summarize_ct='', title_ct__isnull=False, category=cate)
             for obj, summary_text in zip(queryset_ct, summarized_ct_results):
