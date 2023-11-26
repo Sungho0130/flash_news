@@ -5,7 +5,7 @@ def summary(content_text : str):
         content_text = content_text[:512]
     else:
         content_text = content_text[:len(content_text)]
-    if len(content_text) > 30:
+    if len(content_text) > 50:
         result = summarize(content_text)
     else:
         result = content_text
