@@ -16,8 +16,9 @@ def iframe_src(detail_url):
     chrome_options.add_argument('--headless')  # headless 모드 활성화
     chrome_options.add_argument('--disable-gpu')  # GPU 가속 비활성화
     chrome_options.add_argument("--user-agent=Mozilla/5.0")
-    chrome_driver_path = '../chromedriver'
+    chrome_driver_path = '/usr/bin/chromedriver'
     driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
+
     # 웹페이지 열기
     driver.get(detail_url)
     # 명시적 대기: 최대 50초 동안 player_iframe 클래스가 있는 iframe을 찾을 때까지 기다림
