@@ -11,6 +11,7 @@ import re
 from .models import Crawring, Crawring_ct
 import time
 from tqdm import tqdm
+from selenium.webdriver.chrome.service import Service
 
 def iframe_src(detail_url):
     extracted_url = ''
@@ -18,8 +19,8 @@ def iframe_src(detail_url):
     chrome_options.add_argument('--headless')  # headless 모드 활성화
     chrome_options.add_argument('--disable-gpu')  # GPU 가속 비활성화
     chrome_options.add_argument("--user-agent=Mozilla/5.0")
-    chrome_driver_path = '/usr/bin/chromedriver'
-    driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
+    service = Service('/usr/local/bin/chromedriver')
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
     # 웹페이지 열기
     driver.get(detail_url)
