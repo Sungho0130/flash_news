@@ -46,9 +46,7 @@
                                     </div>
                                 </header>
                                 <!-- 뉴스 기사 -->
-                                {% if craw %}
-                                {% include "news_list.html" %}
-                                {% elif craw_ct %}
+                                {% if craw_ct %}
                                 {% include "detail_list.html" %}
                                 {% else %}
                                 <p>여기에 표시할 콘텐츠가 없습니다.</p>
