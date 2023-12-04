@@ -1,6 +1,6 @@
 # 📄 프로젝트 소개
 
-하루에도 수백, 수천 개의 경제 뉴스가 발간되어 기업의 경제 활동에 대한 정보를 제공합니다. 하지만 양이 지나치게 방대하여 개인이 전부 읽은 뒤 에 활용 하기에는 어려움이 있습니다. 따라서 저희는 기사 요약 에 대한 을 가독성이 높은 형태로 제공하려고 합니다.
+현대사회는 "대 정보 시대"라고 불리는 만큼 하루에도 수백, 수천 개의 뉴스가 발간되어 기업, 국가, 지역, 또는 개개인의 활동에 대한 정보를 제공합니다. 하지만 양이 지나치게 방대하여 개인이 전부 읽은 뒤 정확하고 필요한 정보만 찾거나 얻기에는 시간의 압박이라는 어려움이 있습니다. 따라서 저희는 빠른 전달력과 정확한 정보를 중점으로 기사 요약을 하여 요약된 기사에 대한 접근성과 가독성이 높은 형태로 제공하려고 합니다.
 
 # 🗓️ 개발 기간
 
@@ -8,21 +8,27 @@
 
 # 👨‍👨‍👧‍👧 멤버 구성 및 역할
 
-| [최성호](https://github.com/Sungho0130)                                                       | [홍승재](https://github.com/ghdtmd4117)                                                                                 | [김건희](https://github.com/Geonzzang)                                                                                                | [김성진](https://github.com/dolrea77)                  |
-|---|---|---|---| --- |
-| <img src="" width="140px" height="140px" title="Sungho Choi" /> | <img src="" width="140px" height="140px" title="이름" /> | <img src="" width="140px" height="140px" title="이름" /> | <img src="" width="140px" height="140px" title="이름" /> | 
+| [최성호](https://github.com/Sungho0130)                                                                                                                                                                                                                                                                               | [홍승재](https://github.com/ghdtmd4117)   | [김건희](https://github.com/Geonzzang)              | [김성진](https://github.com/dolrea77)                  |
+
+
 
 - **최성호**
-    - 요약 모델
+    - Frontend
 
 - **홍승재**
-    - 뉴스 긍부정 분류
+    - Frontend
 
 - **김건희**
+    - Backend
+    - 사용 가능 모델 탐색 
+    - 자료 수집 및 정리
     - 서기
 
 - **김성진**
-    - 키워드 추출
+    - Backend
+    - 웹 서버 관리
+    - 모델 성능 실험 및 연동
+    - DB 관리
 
 
 
@@ -37,15 +43,18 @@
 
 # 🏗️ 프로젝트 구조
 
-## 서버 구조
+# 서버 구조
 
-![](images/flash_news 서버구조2.jpg)
+<img src="images/flash_news 서버구조2.jpg">
 
-## DB 구조
+# DB 구조
 
-![](images/flash_news 구조2.jpg)
+<img src="images/flash_news 구조2.jpg">
 
 # 👨‍🔬 사용 모델
+
+사용한 이유~~~
+이러한 이유로 따로 미세조정을 하지않고 'bertshared-kor-base' 모델을 사용하였습니다.
 
 ## 기사 요약
 
@@ -58,6 +67,6 @@
 
 # 🔗 링크
 
-- [랩업 리포트](/assets/docs/NLP_04_Wrap-Up_Report_FinalProj.pdf)
+- [랩업 리포트](/images/Flash News.pdf)
 - [프로젝트 소개 노션 페이지](https://www.notion.so/Flsah-News-7f856b82e54c4ef6a42cfeca0868ada3)
 - [서비스 바로가기](https://www.flash-newss.kro.kr/)
