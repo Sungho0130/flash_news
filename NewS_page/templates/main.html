@@ -78,7 +78,7 @@
                 <!-- 이메일 폼 추가 -->
                 <div class="email-form-container">
                     <h2>Contact us</h2>
-                    <form action="{% url 'email_page' %}" method="post">
+                    <form action="{% url 'main_page' %}" method="post">
                         {% csrf_token %}
                         <!-- 이메일 입력 필드 -->
                         <label for="email">E-mail</label>
