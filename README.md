@@ -67,6 +67,6 @@
 
 # 🔗 링크
 
-- [랩업 리포트](images/Flash_News.pdf)
+- [랩업 리포트](https://github.com/Sungho0130/flash_news/blob/fc8fbed8fea65c3c66ad61c1b245edc0a8a3d8fa/images/Flash%20News.pdf)
 - [프로젝트 소개 노션 페이지](https://www.notion.so/Flsah-News-7f856b82e54c4ef6a42cfeca0868ada3)
 - [서비스 바로가기](https://www.flash-newss.kro.kr/)
