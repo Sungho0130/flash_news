@@ -1,9 +1,9 @@
 from apscheduler.schedulers.background import BackgroundScheduler
-from .news_craw import newscrawring, category_crawring
-from .models import Crawring, Crawring_ct
+from .news_craw import crawring
+from .models import Crawring_ct
 from .model_call import summary
 from datetime import datetime, timedelta
-from tqdm import tqdm
+
 import concurrent.futures
 def summarize_parallel(content_list):
     # content_list는 각각의 content를 포함하는 리스트입니다.
@@ -18,15 +18,7 @@ def summarize_parallel(content_list):
         results = list(executor.map(run_summary, content_list))
         summarized_results.extend(results)
     return summarized_results
-def data_num():
-    max_records = 40
-    current_records = Crawring.objects.count()
-    if current_records > max_records:
-        # 최신 데이터 기준으로 오래된 레코드를 선택
-        records_to_delete = Crawring.objects.order_by('created_at')[:current_records - max_records]
-        # 선택된 레코드를 삭제
-        for record in records_to_delete:
-            record.delete()
+
 def data_num_ct(category):
     max_records = 60
     current_records = Crawring_ct.objects.filter(category=category).count()
@@ -37,39 +29,10 @@ def data_num_ct(category):
         for record in records_to_delete:
             record.delete()
 def job():
-    print('job 시작')
-    news = newscrawring()
-    print('home 크롤링 완료!')
-    try:
-        for i in range(len(news['title'])):
-            # 중복 확인
-            if not Crawring.objects.filter(title=news["title"][i]).exists():
-                title = news['title'][i]
-                content = news['content'][i]
-                img = news['img'][i]
-                src = news['src'][i]
-                # Crawring 모델 인스턴스 생성 및 저장
-                Crawring.objects.create(title=title, content=content, img=img, src=src)
-        print('home 데이터베이스 저장 완료')
-    except:
-        print('크롤링 필요없음')
-    # 데이터 베이스 50개 초과시 오래된 것 부터 삭제
-    data_num()
-    if not Crawring.objects.filter(summarize='').exclude(title=''):
-        print('비어있는 summarize 없음')
-    else:
-        content_queryset = Crawring.objects.filter(summarize='').exclude(title='').values_list('content', flat=True)
-        content_list = list(content_queryset)
-        summarized_results = summarize_parallel(content_list)
-        queryset = Crawring.objects.filter(summarize='', title__isnull=False)
-        for obj, summary_text in tqdm(zip(queryset, summarized_results)):
-            obj.summarize = summary_text
-            obj.save()
-        print('요약 모델 작동 완료')
-    cate_list = ['society', 'politics', 'economic', 'culture', 'entertain', 'sports', 'digital']
+    cate_list = ['main', 'society', 'politics', 'economic', 'culture', 'entertain', 'sports', 'digital']
     for cate in cate_list:
         print(f'{cate}크롤링 시작')
-        news_ct = category_crawring(cate)
+        news_ct = crawring(cate)
         print(f'{cate} 크롤링 완료!')
         try:
             for i in range(len(news_ct['title'])):
@@ -85,7 +48,7 @@ def job():
             print(f'{cate} 데이터베이스 저장 완료')
         except:
             print('크롤링 필요없음')
-        # 해당카테고리의 오래된 순서로 90개초과시 삭제
+        # 해당카테고리의 오래된 순서로 60개초과시 삭제
         data_num_ct(cate)
         if not Crawring_ct.objects.filter(summarize_ct=''):
             print('비어있는 summarize_ct가 없습니다')
