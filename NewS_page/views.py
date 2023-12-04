@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Crawring, Crawring_ct
+from .models import Crawring_ct
 from django.core.paginator import Paginator
 from django.core.mail import EmailMessage
-import time
+from django.views.decorators.csrf import csrf_exempt
+
 def main_page(request):
 
 
@@ -24,7 +25,7 @@ def main_page(request):
 
     return render(request, "main.html", {'craw_ct': page, 'category': cate})
 
-
+@csrf_exempt
 def email_page(request):
     if request.method == 'POST':
         email = EmailMessage(
