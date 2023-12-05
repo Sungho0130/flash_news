@@ -108,12 +108,12 @@ max_length = min(128, int(0.3 * sentence_length))
 # 🔗 링크
 
 - [PPT](https://github.com/Sungho0130/flash_news/blob/fc8fbed8fea65c3c66ad61c1b245edc0a8a3d8fa/images/Flash%20News.pdf)
-- <a href="https://smooth-cinnamon-b2d.notion.site/Flsah-News-7f856b82e54c4ef6a42cfeca0868ada3?pvs=4" target=_blank>[프로젝트 소개 노션 페이지]</a>
-- <a href="https://www.flash-news.kro.kr/" target=_blank>[서비스 바로가기]</a>
+- <a href="https://smooth-cinnamon-b2d.notion.site/Flsah-News-7f856b82e54c4ef6a42cfeca0868ada3?pvs=4" target="_blank">[프로젝트 소개 노션 페이지]</a>
+- <a href="https://www.flash-news.kro.kr/" target="_blank">[서비스 바로가기]</a>
 
 
 # Reference
-- <a href="https://github.com/hyunwoongko/kobart-transformers" target=_blank>[Kobart]</a>
-- <a href="https://github.com/kiyoungkim1/LMkor" target=_blank>[Bertshared]</a>
-- <a href="https://github.com/huggingface/transformers" target=_blank>[Huggingface Transformers]</a>
-- <a href="https://github.com/google-research/bert" target=_blank>[Bert]</a>
+- <a href="https://github.com/hyunwoongko/kobart-transformers" target="_blank">[Kobart]</a>
+- <a href="https://github.com/kiyoungkim1/LMkor" target="_blank">[Bertshared]</a>
+- <a href="https://github.com/huggingface/transformers" target="_blank">[Huggingface Transformers]</a>
+- <a href="https://github.com/google-research/bert" target="_blank">[Bert]</a>
