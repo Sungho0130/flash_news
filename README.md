@@ -62,8 +62,8 @@
 밑에 나오는 표는 kobart와 저희가 사용한 모델과 비교한 루지 지표입니다.
 
 <p align="center" width="100%">
-    <img src="images/BERTShared vs KoBART.png" width="50%">
-    <img src="images/512_over_BERTShared vs KoBART.png" width="50%">
+    <img src="images/BERTShared vs KoBART.png" width="49%">
+    <img src="images/512_over_BERTShared vs KoBART.png" width="49%">
 </p>
 
 kobart와 bertshared 두 모델 중에 bertshared를 사용한 이유는 저희의 기획 의도 자체가 정확한 정보를 가독성이 좋게 전달함에 있기 때문에 요약되어 나오는 출력값에 대해 초점을 뒀습니다.
@@ -94,7 +94,9 @@ max_length = min(128, int(0.3 * sentence_length))
 
 # 발표 영상(or 시현 영상인데 시현 영상이 들어가는게 좋아보임)
 
-![](images/웹서비스시현영상.gif)
+![](images/news_card.gif)
+![](images/buttontop.gif)
+
 
 # 발전 가능성
 
