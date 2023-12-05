@@ -48,6 +48,7 @@
 밑에 나오는 표는 kobart와 저희가 사용한 모델과 비교한 루지 지표입니다.
 
 <img src="images/BERTShared vs KoBART.png">
+<img src="images/512_over_BERTShared vs KoBART.png">
 
 ## kobart와 bertshared 두 모델 중에 bertshared를 사용한 이유
 
