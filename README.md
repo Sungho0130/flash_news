@@ -8,38 +8,24 @@
 
 # 👨‍👨‍👧‍👧 멤버 구성 및 역할
 
-| [최성호](https://github.com/Sungho0130)                                                                                                                                                                                                                                                                               | [홍승재](https://github.com/ghdtmd4117)   | [김건희](https://github.com/Geonzzang)              | [김성진](https://github.com/dolrea77)                  |
-
-
-
-- **최성호**
+- [**최성호**](https://github.com/Sungho0130)
     - Frontend
 
-- **홍승재**
+- [**홍승재**](https://github.com/ghdtmd4117)
     - Frontend
 
-- **김건희**
+- [**신건희**](https://github.com/Geonzzang)
     - Backend
     - 사용 가능 모델 탐색 
     - 자료 수집 및 정리
     - 서기
 
-- **김성진**
+- [**김성진**](https://github.com/dolrea77)
     - Backend
     - 웹 서버 관리
     - 모델 성능 실험 및 연동
     - DB 관리
 
-
-
-# ⚒️ 기능
-
-
-## 기사 요약
-
-- IT / 경제분야 뉴스를 이용하여 학습한 모델(`T5`, `polyglot-ko`)을 이용하여 뉴스를 요약 제공합니다.
-- `T5` 모델을 이용하여 한줄 요약을 만들어내고, 이후 자세한 내용은 `polyglot-ko` 모델을 이용하여 상대적으로 긴 요약 내용을 추가해 줍니다.
-- 모델을 이용하여 생성된 결과는 유의미한 문장만을 가져와 후처리하여 반환합니다.
 
 # 🏗️ 프로젝트 구조
 
@@ -47,26 +33,66 @@
 
 <img src="images/flash_news 서버구조2.jpg">
 
+- 서버 구조 설명 블라블라~
+
 # DB 구조
 
 <img src="images/flash_news 구조2.jpg">
 
+- DB 구조 설명 블라블라~
+
 # 👨‍🔬 사용 모델
 
 사용한 이유~~~
-이러한 이유로 따로 미세조정을 하지않고 'bertshared-kor-base' 모델을 사용하였습니다.
+
+밑에 나오는 표는 kobart와 저희가 사용한 모델과 비교한 루지 지표입니다.
+
+<img src="images/BERTShared vs KoBART.png">
+
+## kobart와 bertshared 두 모델 중에 bertshared를 사용한 이유
+
+저희의 기획 의도 자체가 정확한 정보를 가독성이 좋게 전달함에 있기 때문에 요약되어 나오는 출력값에 대해 초점을 뒀습니다.
+아무래도 kobart는 한국어에 대한 미세조정만 된 것이지 한국어 뉴스 기사에 대한 미세조정이 잘 되어있는 모델은 아니기 때문에 bertshared를 선택했습니다.
+그리고 bert는 기본적으로 문맥 파악에 제일 큰 강점을 가지고 있는 모델이다보니 뉴스에서 정확한 정보를 파악 후 요약해서 전달 함에 있어서 최적이라고 생각이 들었습니다. 이러한 이유로 따로 미세조정을 하지않고 'bertshared-kor-base' 모델을 사용하였습니다.
+
+## 모델 소개
+
+저희가 사용한 'Bertshared-kor-base' 모델은 ~~~모델설명
+
+# ⚒️ 기능
+
+## 기사 크롤링
+
+- 다음뉴스에서 크롤링 작업을 시행합니다. 홈 과 각 카테고리 별로 크롤링을 해옵니다.
+- 크롤링을 하는 작업에서 DB안에 뉴스 기사 제목을 통한 중복값과 url을 확인한 후 필터링 합니다.
+- 실시간으로 크롤링을 계속 돌리는게 한정적인 서버를 이용해야하는 저희의 입장에서 많이 부담이 되었으며, 현실적인 서비스 이용에 있어서 불가능하다고 판단하여 실시간 => 매시간 으로 크롤링해오는 시간을 설정하여 자동화를 시켰습니다.
+
 
 ## 기사 요약
 
-- 논문 요약 데이터셋과 IT / 경제분야 뉴스 요약 데이터셋을 실험한 결과 선정된 IT / 경제분야 뉴스 요약 데이터셋을 선정하여 요약 모델을 학습시켰습니다.
-- 선정된 데이터셋을 이용하여 본 서비스에서 사용될 `T5-base`, `polyglot-ko 1.3b` 모델을 학습시켰습니다.
+- 다음 뉴스에서 크롤링해온 뉴스 기사들을 병렬 작업하여 요약합니다.
+- bert기반 모델을 사용하기때문에 크롤링 해온 데이터의 text가 512자가 넘는건 자르고, 너무 짧으면 요약 할 이유가 없으니 30자 이내로는 그대로 사용했습니다.
+- text 데이터의 길이에 따라 출력되는 요약 text의 최소, 최대 길이를 정해주었습니다.
+```
+min_length = max(10, int(0.1 * sentence_length))
+max_length = min(128, int(0.3 * sentence_length))
+```
 
-# 데모 영상
+
+# 발표 영상(or 시현 영상인데 시현 영상이 들어가는게 좋아보임)
 
 ![](/assets/img/demo.gif)
 
+# 발전 가능성 or 기대효과?
+
 # 🔗 링크
 
-- [랩업 리포트](https://github.com/Sungho0130/flash_news/blob/fc8fbed8fea65c3c66ad61c1b245edc0a8a3d8fa/images/Flash%20News.pdf)
+- [PPT](https://github.com/Sungho0130/flash_news/blob/fc8fbed8fea65c3c66ad61c1b245edc0a8a3d8fa/images/Flash%20News.pdf)
 - [프로젝트 소개 노션 페이지](https://www.notion.so/Flsah-News-7f856b82e54c4ef6a42cfeca0868ada3)
 - [서비스 바로가기](https://www.flash-newss.kro.kr/)
+
+# Reference
+- [Kobart](https://github.com/hyunwoongko/kobart-transformers)
+- [Bertshared](https://github.com/kiyoungkim1/LMkor)
+- [Huggingface Transformers](https://github.com/huggingface/transformers)
+- [Bert](https://github.com/google-research/bert)
