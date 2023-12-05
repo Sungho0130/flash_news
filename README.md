@@ -35,7 +35,7 @@
 
 - 서버 구조 설명 블라블라~
 
-# DB 구조
+# 벡엔드 구조
 
 <img src="images/flash_news 구조2.jpg">
 
