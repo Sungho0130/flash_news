@@ -6,6 +6,10 @@
 # 🗓️ 개발 기간
 
 23.11.10 - 23.11.27(총 18일)
+</br></br>
+
+# 📰 링크 바로가기
+- <a href="https://www.flash-news.kro.kr/" target="_blank">서비스 바로가기</a>
 </br>
 
 # 👨‍👨‍👧‍👧 멤버 구성 및 역할
@@ -123,7 +127,6 @@ max_length = min(128, int(0.3 * sentence_length))
 
 - [PPT](https://github.com/Sungho0130/flash_news/blob/fc8fbed8fea65c3c66ad61c1b245edc0a8a3d8fa/images/Flash%20News.pdf)
 - <a href="https://smooth-cinnamon-b2d.notion.site/Flsah-News-7f856b82e54c4ef6a42cfeca0868ada3?pvs=4" target="_blank">[프로젝트 소개 노션 페이지]</a>
-- <a href="https://www.flash-news.kro.kr/" target="_blank">[서비스 바로가기]</a>
 
 
 # Reference
